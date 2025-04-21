@@ -27,19 +27,19 @@ student_template = {
 CompScience_students["S001"] = {
     "name": "Alice",
     "id": "S001",
-    "enrolled_courses": ["Physics", "Biology"]
+    "enrolled_courses": ["None"]
 }
 
 # Adding a student to the Arts track
 InfoTech_students["A001"] = {
     "name": "Bob",
     "id": "A001",
-    "enrolled_courses": ["History", "Philosophy"]
+    "enrolled_courses": ["None"]
 }
 
 # Adding a student to the Commerce track
 CyberSecur_students["C001"] = {
     "name": "Charlie",
     "id": "C001",
-    "enrolled_courses": ["Accounting", "Economics"]
+    "enrolled_courses": ["None"]
 }
