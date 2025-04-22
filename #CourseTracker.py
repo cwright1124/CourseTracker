@@ -1,4 +1,31 @@
 #CourseTracker
+
+# Example user database (in a real application, use a secure database)
+users = {
+    "student1": {"password": "password123", "track": "Computer Science"},
+    "student2": {"password": "securepass", "track": "Information Technology"}
+}
+
+# Function to authenticate a user
+def login(username, password):
+    if username in users and users[username]["password"] == password:
+        print(f"Login successful! Welcome, {username}!")
+        return users[username]["track"]
+    else:
+        print("Invalid username and/or password.")
+        print("Try again.")
+        return None
+
+# Loop until the user provides valid credentials
+user_track = None
+while not user_track:
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    user_track = login(username, password)
+
+# If login is successful, proceed
+print(f"Your current major is {user_track}.") 
+
 # Define the three tracks
 track_1 = "Computer Science"
 track_2 = "Information Technology"
