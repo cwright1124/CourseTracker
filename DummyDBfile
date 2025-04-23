@@ -1,0 +1,81 @@
+import sqlite3
+
+# Connect to SQLite database (creates the file if it doesn't exist)
+conn = sqlite3.connect('course_tracker.db')
+
+# Create a cursor object to execute SQL commands
+cursor = conn.cursor()
+
+# Create the users table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL,
+    track TEXT
+)
+''')
+
+# Create the courses table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS courses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    code TEXT NOT NULL UNIQUE,
+    seats INTEGER NOT NULL
+)
+''')
+
+# Create the enrollments table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS enrollments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    course_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (course_id) REFERENCES courses (id)
+)
+''')
+
+# Insert sample users
+cursor.executemany('''
+INSERT OR IGNORE INTO users (username, password, role, track) VALUES (?, ?, ?, ?)
+''', [
+    ('j.a.clifton', 'password123', 'student', 'Information Technology'),
+    ('c.j.wright', 'securepass', 'student', 'Information Technology'),
+    ('faculty1', 'adminpass', 'faculty', None)
+])
+
+# Insert sample courses
+cursor.executemany('''
+INSERT OR IGNORE INTO courses (name, code, seats) VALUES (?, ?, ?)
+''', [
+    ('Intro to Python', 'CS101', 3),
+    ('Data Structures', 'CS201', 0),
+    ('Web Development', 'CS301', 5)
+])
+
+# Commit changes and close the connection
+conn.commit()
+conn.close()
+
+print("Database and tables created successfully!")
+print("Sample data inserted successfully!")
+
+# Connect to SQLite database
+conn = sqlite3.connect('course_tracker.db')
+cursor = conn.cursor()
+
+# Query users
+print("Users:")
+for row in cursor.execute('SELECT * FROM users'):
+    print(row)
+
+# Query courses
+print("\nCourses:")
+for row in cursor.execute('SELECT * FROM courses'):
+    print(row)
+
+# Close the connection
+conn.close()
