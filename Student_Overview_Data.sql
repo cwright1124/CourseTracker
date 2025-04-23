@@ -1,0 +1,1 @@
+SELECT classes_taken FROM Students
