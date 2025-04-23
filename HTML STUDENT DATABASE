@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Database</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Database</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Student ID</th>
+                <th>Major</th>
+                <th>Advisor ID</th>
+                <th>Classification</th>
+                <th>Classes Taken</th>
+                <th>Classes Needed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Snow</td>
+                <td>3451</td>
+                <td>ComputerScience</td>
+                <td>123</td>
+                <td>Freshman 2nd Semester</td>
+                <td>
+                    <h2>Freshman Year</h2>
+                    <ul>
+                        <li>SEM 101</li>
+                        <li>CSC 101</li>
+                        <li>CSC 170</li>
+                        <li>CSC 170L</li>
+                        <li>ENG 101</li>
+                        <li>HED 100</li>
+                        <li>MTH 153</li>
+                        <li>PED 101</li>
+                        <li>HED 100 Failed</li>
+                        <li>PED 101 Failed</li>
+                    </ul>
+                </td>
+                <td>
+                    <h2>Freshman Year</h2>
+                    <ul>
+                        <li>Pre-req CSC-170</li>
+                        <li>Pre-req MTH-184</li>
+                        <li>CSC 260</li>
+                        <li>CSC 260L</li>
+                        <li>MTH 184</li>
+                        <li>Pre-req ENG-101</li>
+                        <li>SEM 102</li>
+                        <li>ENG 102</li>
+                    </ul>
+                    <h2>Sophomore Year</h2>
+                    <ul>
+                        <li>SEM 201</li>
+                        <li>CSC-372</li>
+                        <li>Pre-req CSC-260</li>
+                        <li>Pre-req CSC-170</li>
+                        <li>CSC-268</li>
+                        <li>CSC-295</li>
+                        <li>Pre-req CSC-260</li>
+                        <li>CSC-361</li>
+                        <li>BIO 110</li>
+                        <li>BIO 110L</li>
+                        <li>Pre-req MTH-184</li>
+                        <li>MTH251</li>
+                        <li>MTH-371</li>
+                        <li>ENG 285</li>
+                        <li>Pre-req ENG-101 and 102</li>
+                        <li>ENG-303</li>
+                    </ul>
+                    <h2>Junior Year</h2>
+                    <ul>
+                         <li>Pre-req CSC-260</li>
+                        <li>CSC 292</li>
+                        <li>CSC-275</li>
+                        <li>Pre-req CSC-372</li>
+                        <li>CSC-380</li>
+                        <li>CSC-430</li>
+                        <li>Pre-req CSC-268</li>
+                        <li>CSC-468</li>
+                        <li>Pre-req MTH-251</li>
+                        <li>MTH 351</li>
+                        <li>Pre-req MTH-153</li>
+                        <li>CHM 221</li>
+                        <li>CHM 221L</li>
+                        <li>ELECT csc360</li>
+                        <li>Pre-req ENG-101 and 102</li>
+                        <li>ENG 207</li>
+                    </ul>
+                    <h2>Senior Year</h2>
+                    <ul>
+                        <li>Pre-req CSC-380</li>
+                        <li>CSC-498</li>
+                        <li>CSC-499</li>
+                        <li>Pre-req CSC-372</li>
+                        <li>CSC-464</li>
+                        <li>req</li>
+                        <li>ELECT csc395</li>
+                        <li>CSC 369</li>
+                        <li>CSC 420</li>
+                        <li>CSC 445</li>
+                        <li>CSC 472</li>
+                        <li>HIS 335</li>
+                        <li>Pre-req ENG-101 and 102</li>
+                        <li>ENG 383</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Bella Joy</td>
+                <td>2134</td>
+                <td>Cyber Security</td>
+                <td>332</td>
+                <td>Junior 1st Semester</td>
+                <td>
+                    <h2>Freshman Year</h2>
+                    <ul>
+                        <li>SEM 101</li>
+                        <li>SEM 102</li>
+                        <li>CSC 101</li>
+                        <li>CSC 170</li>
+                        <li>CSC 170L</li>
+                        <li>CSC 260</li>
+                        <li>CSC 260L</li>
+                        <li>ENG 101</li>
+                        <li>ENG 102</li>
+                        <li>MTH 153</li>
+                        <li>MTH 184</li>
+                        <li>PED 100</li>
+                        <li>HED 100</li>
+                         <li>HIS 101</li>
+                    </ul>
+                    <h2>Sophomore Year</h2>
+                    <ul>
+                        <li>CSC 372 Failed</li>
+                        <li>CSC 268</li>
+                        <li>CSC 275</li>
+                        <li>PHY 152 Failed</li>
+                        <li>PHY 1521 Failed</li>
+                        <li>MTH 251</li>
+                        <li>MTH 371 Failed</li>
+                        <li>ENG 303</li>
+                        <li>ENG 285</li>
+                    </ul>
+                    <h2>Junior Year</h2>
+                    <ul>
+                         <li>CSC 292</li>
+                        <li>CSC-420</li>
+                        <li>CSC-361</li>
+                    </ul>
+                </td>
+                <td>
+                    <h2>Sophomore Year</h2>
+                    <ul>
+                        <li>Pre-req CSC-260</li>
+                        <li>CSC 372</li>
+                        <li>MTH 371</li>
+                        <li>Pre-req MTH-153</li>
+                        <li>PHY 152</li>
+                        <li>PHY 152L</li>
+                    </ul>
+                    <h2>Junior Year</h2>
+                    <ul>
+                        <li>CSC-430</li>
+                        <li>CSC-380</li>
+                        <li>Pre-req CSC-372</li>
+                        <li>Pre-req CSC-430</li>
+                        <li>CSC-449</li>
+                         <li>Pre-req NULL</li>
+                        <li>CSC-435</li>
+                        <li>MTH 351</li>
+                        <li>Pre-req MTH-251</li>
+                        <li>BIO 110</li>
+                        <li>BIO 110L</li>
+                        <li>Pre-req ENG-101 & 102</li>
+                        <li>ENG 207</li>
+                        <li>FIA 201</li>
+                        <li>MUS 301</li>
+                    </ul>
+                    <h2>Senior Year</h2>
+                    <ul>
+                         <li>Pre-req CSC-260</li>
+                        <li>CSC 445</li>
+                        <li>Pre-req CSC-380</li>
+                        <li>CSC-498</li>
+                        <li>CSC-499</li>
+                        <li>CSC-464</li>
+                        <li>CSC 313</li>
+                        <li>Pre-req CSC-268</li>
+                        <li>CSC-468</li>
+                        <li>Pre-req CSC-445</li>
+                        <li>CSC-494</li>
+                        <li>HIS 335</li>
+                        <li>HRP 320</li>
+                        <li>ENG 383</li>
+                        <li>MUS 234</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Matt Murdock</td>
+                <td>7784</td>
+                <td>Info Tech</td>
+                <td>278</td>
+                <td>Senior 2nd Semester</td>
+                <td>
+                    <h2>Freshman Year</h2>
+                    <ul>
+                        <li>CSC 101</li>
+                        <li>CSC 170</li>
+                        <li>CSC 170L</li>
+                        <li>CSC 260</li>
+                        <li>CSC 260L</li>
+                        <li>ITE 111</li>
+                        <li>ENG 101</li>
+                        <li>ENG 102</li>
+                        <li>SEM 101</li>
+                        <li>SEM 102</li>
+                        <li>HED 100</li>
+                        <li>MTH 153</li>
+                        <li>MTH 184</li>
+                        <li>PED 100</li>
+                    </ul>
+                    <h2>Sophomore Year</h2>
+                    <ul>
+                        <li>SEM 201</li>
+                        <li>ITE 195</li>
+                        <li>ITE 211</li>
+                        <li>ITE 311</li>
+                        <li>CSC 268</li>
+                        <li>CSC 360</li>
+                        <li>CHM 221</li>
+                        <li>CHM 2211</li>
+                        <li>CHM 222</li>
+                        <li>CHM 2221</li>
+                    </ul>
+                    <h2>Junior Year</h2>
+                    <ul>
+                        <li>CSC 380</li>
+                        <li>CSC 420</li>
+                        <li>CSC 435</li>
+                        <li>IMT 244</li>
+                        <li>MTH 250</li>
+                        <li>ENG 285</li>
+                    </ul>
+                </td>
+                <td>
+                    <h2>Concentration Elect</h2>
+                    <ul>
+                        <li>BUS 431</li>
+                        <li>FIA 260</li>
+                        <li>CIT 436</li>
+                    </ul>
+                    <h2>Senior Year 2nd Semester</h2>
+                    <ul>
+                        <li>CSC 499</li>
+                    </ul>
+                    <h2>Concentrate Elect</h2>
+                    <ul>
+                        <li>csc-312</li>
+                    </ul>
+                    <h2>Concentrate Elect</h2>
+                    <ul>
+                         <li>csc-445</li>
+                    </ul>
+                    <h2>Elect</h2>
+                    <ul>
+                        <li>HUM-201</li>
+                    </ul>
+                    <h2>Social Science Elect</h2>
+                    <ul>
+                        <li>HIS-100</li>
+                    </ul>
+                    <h2>Senior Year 1st Semester</h2>
+                    <ul>
+                        <li>CSC 498</li>
+                        <li>IMT 303</li>
+                        <li>IMT 413</li>
+                        <li>CSC Elect 372</li>
+                        <li>FIA 201</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
