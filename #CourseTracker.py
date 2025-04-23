@@ -1,72 +1,72 @@
-#CourseTracker
+#CourseTracker.py
+import sqlite3
+from flask import Flask, request, jsonify, render_template  # Add render_template
 
-# Example user database (in a real application, use a secure database)
-users = {
-    "student1": {"password": "password123", "track": "Computer Science"},
-    "student2": {"password": "securepass", "track": "Information Technology"}
-}
+app = Flask(__name__)  # Define the app object here
+
+# Route to serve the HTML page
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Function to connect to the SQLite database
+def get_db_connection():
+    conn = sqlite3.connect('course_tracker.db')
+    conn.row_factory = sqlite3.Row  # Enable dictionary-like row access
+    return conn
 
 # Function to authenticate a user
 def login(username, password):
-    if username in users and users[username]["password"] == password:
+    conn = get_db_connection()
+    user = conn.execute(
+        'SELECT * FROM users WHERE username = ? AND password = ?',
+        (username, password)
+    ).fetchone()
+    conn.close()
+
+    if user:
         print(f"Login successful! Welcome, {username}!")
-        return users[username]["track"]
+        return {"name": user["name"], "track": user["track"]}
     else:
         print("Invalid username and/or password.")
         print("Try again.")
         return None
 
-# Loop until the user provides valid credentials
-user_track = None
-while not user_track:
-    username = input("Enter your username: ")
-    password = input("Enter your password: ")
-    user_track = login(username, password)
+# New route to get user details and courses after login
+@app.route('/api/user_data', methods=['POST'])
+def get_user_data():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
 
-# If login is successful, proceed
-print(f"Your current major is {user_track}.") 
+    user = login(username, password)
+    if user:
+        conn = get_db_connection()
+        courses = conn.execute(
+            'SELECT * FROM courses WHERE track = ?',
+            (user["track"],)
+        ).fetchall()
+        conn.close()
+        return jsonify({"name": user["name"], "courses": [dict(course) for course in courses]})
+    return jsonify({"error": "Invalid credentials"}), 401
 
-# Define the three tracks
-track_1 = "Computer Science"
-track_2 = "Information Technology"
-track_3 = "Cyber Security"
+# Flask route to get all courses
+@app.route('/api/courses', methods=['GET'])
+def get_courses():
+    conn = get_db_connection()
+    courses = conn.execute('SELECT * FROM courses').fetchall()
+    conn.close()
+    return jsonify([dict(course) for course in courses])
 
-# Create dictionaries to store student data for each track
-CompScience_students = {}
-InfoTech_students = {}
-CyberSecur_students = {}
+# Flask route to get a specific course by ID
+@app.route('/api/courses/<int:course_id>', methods=['GET'])
+def get_course(course_id):
+    conn = get_db_connection()
+    course = conn.execute('SELECT * FROM courses WHERE id = ?', (course_id,)).fetchone()
+    conn.close()
+    if course:
+        return jsonify(dict(course))
+    return jsonify({"error": "Course not found"}), 404
 
-# Example variables for tracking courses and students
-courses_CompScience = ["Physics", "Chemistry", "Biology"]
-courses_InfoTech = ["History", "Literature", "Philosophy"]
-courses_CyberSecur = ["Accounting", "Economics", "Business Studies"]
-
-# Example student data structure
-# Each student will have a name, ID, and a list of enrolled courses
-student_template = {
-    "name": "",
-    "id": "",
-    "enrolled_courses": []
-}
-
-# Example usage
-# Adding a student to the Science track
-CompScience_students["S001"] = {
-    "name": "Alice",
-    "id": "S001",
-    "enrolled_courses": ["None"]
-}
-
-# Adding a student to the Arts track
-InfoTech_students["A001"] = {
-    "name": "Bob",
-    "id": "A001",
-    "enrolled_courses": ["None"]
-}
-
-# Adding a student to the Commerce track
-CyberSecur_students["C001"] = {
-    "name": "Charlie",
-    "id": "C001",
-    "enrolled_courses": ["None"]
-}
+if __name__ == '__main__':
+    app.run(debug=True)
